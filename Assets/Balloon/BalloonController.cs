@@ -16,6 +16,7 @@ namespace DefaultNamespace.Balloon
 
         private bool readyToSpawn;
         private Tween _tween;
+        private int _score;
         
         public BalloonController(BalloonView.Pool balloonPool)
         {
@@ -57,11 +58,23 @@ namespace DefaultNamespace.Balloon
 
         public void DespawnOne(BalloonView balloonView)
         {
+            _score++;
+            
             _tweenDictionary[balloonView].Kill();
             _tweenDictionary[balloonView] = null;
             
             _tweenDictionary.Remove(balloonView);
             _balloonPool.Despawn(balloonView);
+        }
+
+        public int GetScore()
+        {
+            return _score;
+        }
+
+        public void ResetScore()
+        {
+            _score = 0;
         }
 
         private void SpawnOne()

@@ -8,7 +8,9 @@ namespace UI.UIResultWindow
     public class PlayerResultConfig : ScriptableObject
     {
         [SerializeField] private ResultModel[] resultModels;
-
+        private ResultModel _currentModel;
+        private ResultModel _lastModel;
+        
         public int GetModelsConut()
         {
             return resultModels.Length;
@@ -17,6 +19,22 @@ namespace UI.UIResultWindow
         public ResultModel GetModel(int id)
         {
             return resultModels[id];
+        }
+        public void SetNewResult(ResultModel newModel)
+        {
+            _currentModel = newModel;
+            
+            foreach (var model in resultModels)
+            { 
+                _lastModel = model;
+                
+                if (int.Parse(_currentModel.Score) > int.Parse(_lastModel.Score))
+                {
+                    int id = Array.IndexOf(resultModels, _lastModel);
+                    resultModels[id] = _currentModel;
+                     _currentModel = _lastModel;
+                }
+            }
         }
     }
     

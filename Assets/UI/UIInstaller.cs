@@ -1,4 +1,5 @@
-﻿using UI.UIResultWindow;
+﻿using UI.UILooseWindow;
+using UI.UIResultWindow;
 using UI.UIService;
 using UI.UIStartWindow;
 using Zenject;
@@ -11,6 +12,7 @@ namespace UI
         {
             UIStartWindowInstaller.Install(Container);
             UIResultWindowInstaller.Install(Container);
+            UILooseWindowInstaller.Install(Container);
             
             Container.Bind<IUIRoot>()
                 .FromComponentInNewPrefabResource("UIRoot")

@@ -1,4 +1,5 @@
 ﻿using DefaultNamespace.Balloon;
+using UI.UILooseWindow;
 using UI.UIService;
 using UI.UIStartWindow;
 
@@ -20,13 +21,14 @@ namespace DefaultNamespace.GameController
 
         private void StopGame()
         {
-            _uiService.Show<UIStartWindowView>();
+            _uiService.Show<UILooseWindowView>();
             _balloonController.DespawnAll();
         }
 
         public void StartGame()
         {
             _balloonController.ChangeReadyBool(true);
+            _balloonController.ResetScore();
             _balloonController.SpawnAll();
         }
     }
