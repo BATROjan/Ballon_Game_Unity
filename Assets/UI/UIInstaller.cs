@@ -1,4 +1,5 @@
-﻿using UI.UIService;
+﻿using UI.UIResultWindow;
+using UI.UIService;
 using UI.UIStartWindow;
 using Zenject;
 
@@ -9,6 +10,7 @@ namespace UI
         public override void InstallBindings()
         {
             UIStartWindowInstaller.Install(Container);
+            UIResultWindowInstaller.Install(Container);
             
             Container.Bind<IUIRoot>()
                 .FromComponentInNewPrefabResource("UIRoot")

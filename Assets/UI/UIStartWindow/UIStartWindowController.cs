@@ -1,5 +1,6 @@
 ﻿using DefaultNamespace.Balloon;
 using DefaultNamespace.GameController;
+using UI.UIResultWindow;
 using UI.UIService;
 
 namespace UI.UIStartWindow
@@ -20,6 +21,13 @@ namespace UI.UIStartWindow
             _startWindowView = _uiService.Get<UIStartWindowView>();
             _uiService.Show<UIStartWindowView>();
             _startWindowView.StartButton.OnClick += StartGame;
+            _startWindowView.TableButton.OnClick += ShowTable;
+        }
+
+        private void ShowTable()
+        {
+            _uiService.Hide<UIStartWindowView>();
+            _uiService.Show<UIResultWindowView>();
         }
 
         private void StartGame()
