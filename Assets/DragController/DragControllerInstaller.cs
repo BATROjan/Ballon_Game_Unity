@@ -10,20 +10,20 @@ namespace DragController
     {
         public override void InstallBindings()
         {
-            /*if (SystemInfo.deviceType == DeviceType.Handheld)
-            {*/
+            if (SystemInfo.deviceType == DeviceType.Handheld)
+            {
                 Container.Bind<IDragController>()
                     .To<TouchController.TouchController>()
                     .AsSingle()
                     .NonLazy();
-            /*}
+            }
             else
             {
                 Container.Bind<IDragController>()
                     .To<MouseDragController>()
                     .AsSingle()
                     .NonLazy();
-            }*/
+            }
         }
     }
 }
