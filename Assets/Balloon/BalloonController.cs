@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using UI.UIResultWindow;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,7 +10,8 @@ namespace DefaultNamespace.Balloon
     public class BalloonController
     {
         public Action OnGameOver;
-        
+
+        private readonly PlayerResultConfig _playerResultConfig;
         private readonly BalloonView.Pool _balloonPool;
 
         private Dictionary<BalloonView, Tween> _tweenDictionary = new Dictionary<BalloonView, Tween>();
@@ -18,8 +20,11 @@ namespace DefaultNamespace.Balloon
         private Tween _tween;
         private int _score;
         
-        public BalloonController(BalloonView.Pool balloonPool)
+        public BalloonController(
+            PlayerResultConfig playerResultConfig,
+            BalloonView.Pool balloonPool)
         {
+            _playerResultConfig = playerResultConfig;
             _balloonPool = balloonPool;
         }
         
@@ -43,6 +48,21 @@ namespace DefaultNamespace.Balloon
         public void ChangeReadyBool(bool value)
         {
             readyToSpawn = value;
+        }
+
+        public bool CheckScore()
+        {
+            bool value;
+            if (_score > _playerResultConfig.GetMinScore())
+            {
+                value = true;
+            }
+            else
+            {
+                value = false;
+            }
+
+            return value;
         }
 
         public void DespawnAll()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,11 @@ namespace UI.UIResultWindow
         public ResultModel GetModel(int id)
         {
             return resultModels[id];
+        }
+
+        public int GetMinScore()
+        {
+            return int.Parse(resultModels.Last().Score);
         }
         public void SetNewResult(ResultModel newModel)
         {

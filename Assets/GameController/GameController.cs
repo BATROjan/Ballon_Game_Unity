@@ -21,7 +21,15 @@ namespace DefaultNamespace.GameController
 
         private void StopGame()
         {
-            _uiService.Show<UILooseWindowView>();
+            if (_balloonController.CheckScore())
+            {
+                _uiService.Show<UILooseWindowView>();
+            }
+            else
+            {
+                _uiService.Show<UIStartWindowView>();
+ 
+            }
             _balloonController.DespawnAll();
         }
 
